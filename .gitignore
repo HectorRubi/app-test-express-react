@@ -228,4 +228,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Postgres Volumes
+db_data/
+
 # End of https://www.toptal.com/developers/gitignore/api/linux,windows,macos,node,react
