@@ -1,24 +1,23 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 
-export const usePokemonList = () => {
-  const [pokemonList, setPokemonList] = useState([])
+import { API_URL, endpoints } from './../config/env'
 
-  const fetchPokemonList = () => {
-    fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=10')
+export const usePokemonList = (offset = 0) => {
+  const [pokemonList, setPokemonList] = useState([])
+  const limit = 10
+
+  useEffect(() => {
+    const url = `${API_URL}${endpoints.pokemon}?offset=${offset}&limit=${limit}`
+    axios
+      .get(url)
       .then((response) => {
-        return response.json()
-      })
-      .then((data) => {
-        setPokemonList([...data.results])
+        setPokemonList([...response.data.results])
       })
       .catch(() => {
         setPokemonList([])
       })
-  }
-
-  useEffect(() => {
-    fetchPokemonList()
-  }, [])
+  }, [offset])
 
   return {
     pokemonList,
