@@ -9,16 +9,18 @@ const createPokemonSchema = joi.object({
   order: joi.number(),
   weight: joi.number(),
   locationAreaEncounters: joi.string().trim(),
-  abilities: joi.object({
-    isHidden: joi.boolean().required(),
-    slot: joi.number().required(),
-    ability: joi
-      .object({
-        name: joi.string().trim().required(),
-        url: joi.string().trim().uri().required(),
-      })
-      .required(),
-  }),
+  abilities: joi.array().items(
+    joi.object({
+      isHidden: joi.boolean().required(),
+      slot: joi.number().required(),
+      ability: joi
+        .object({
+          name: joi.string().trim().required(),
+          url: joi.string().trim().uri().required(),
+        })
+        .required(),
+    })
+  ),
 });
 
 module.exports = { createPokemonSchema };
