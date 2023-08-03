@@ -27,6 +27,16 @@ const AbilityAttributes = {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  createdAt: {
+    type: DataTypes.DATE,
+    default: DataTypes.NOW,
+    field: 'created_at',
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    default: DataTypes.NOW,
+    field: 'updated_at',
+  },
 };
 
 class Ability extends Model {

@@ -11,7 +11,6 @@ const PokemonAttributes = {
   },
   extId: {
     type: DataTypes.INTEGER,
-    allowNull: false,
   },
   name: {
     type: DataTypes.STRING,
@@ -19,30 +18,33 @@ const PokemonAttributes = {
   },
   baseExperience: {
     type: DataTypes.INTEGER,
-    allowNull: false,
     field: 'base_experience',
   },
   height: {
     type: DataTypes.INTEGER,
-    allowNull: false,
   },
   isDefault: {
     type: DataTypes.BOOLEAN,
-    allowNull: false,
-    defaultValue: true,
   },
   order: {
     type: DataTypes.INTEGER,
-    allowNull: false,
   },
   weight: {
     type: DataTypes.INTEGER,
-    allowNull: null,
   },
   locationAreaEncounters: {
     type: DataTypes.STRING,
-    allowNull: false,
     field: 'location_area_encounters',
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    default: DataTypes.NOW,
+    field: 'created_at',
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    default: DataTypes.NOW,
+    field: 'updated_at',
   },
 };
 

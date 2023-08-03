@@ -23,8 +23,8 @@ module.exports = {
     );
   },
   async down(queryInterface) {
-    await queryInterface.dropTable(PokemonTableName);
-    await queryInterface.dropTable(AbilityTableName);
     await queryInterface.dropTable(PokemonAbilityTableName);
+    await queryInterface.dropTable(AbilityTableName);
+    await queryInterface.dropTable(PokemonTableName);
   },
 };

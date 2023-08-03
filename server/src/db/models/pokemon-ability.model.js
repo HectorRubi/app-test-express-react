@@ -29,6 +29,16 @@ const PokemonAbilityAttributes = {
       key: 'id',
     },
   },
+  createdAt: {
+    type: DataTypes.DATE,
+    default: DataTypes.DATE,
+    field: 'created_at',
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    default: DataTypes.DATE,
+    field: 'updated_at',
+  },
 };
 
 class PokemonAbility extends Model {
