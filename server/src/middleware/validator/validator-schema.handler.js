@@ -1,16 +1,13 @@
 const { badRequest } = require('@hapi/boom');
 
-const validatorHandler = (schema, property) => {
-  return (req, res, next) => {
-    const data = req[property];
-    const { error } = schema.validate(data, { abortEarly: false });
+const validatorSchemaHandler = (schema, data) => {
+  const { error, value } = schema.validate(data, { abortEarly: false });
 
-    if (error) {
-      next(badRequest(error));
-    }
+  if (error) {
+    throw badRequest(error);
+  }
 
-    next();
-  };
+  return value;
 };
 
-module.exports = { validatorHandler };
+module.exports = { validatorSchemaHandler };
