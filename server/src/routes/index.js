@@ -1,5 +1,5 @@
 const express = require('express');
-const { pokemonRouter } = require('./pokemon.router');
+const { pokemonRouter } = require('./pokemon/pokemon.router');
 
 function routerApi(app) {
   const router = express.Router();
