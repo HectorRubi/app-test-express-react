@@ -1,13 +1,13 @@
-import { PokemonList } from "./PokemonList";
+import { PokemonList } from './PokemonList'
 
-import './App.css';
+import './App.css'
 
 function App() {
   return (
     <div className="App">
       <PokemonList />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
