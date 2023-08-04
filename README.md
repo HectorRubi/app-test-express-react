@@ -109,4 +109,4 @@ If you have any questions, suggestions, or need assistance, please feel free to 
 
 ## License
 
-Released under [MIT](/LICENSE) by [@Hector Rubi](https://github.com/Hector Rubi).
+Released under [MIT](/LICENSE) by [@Hector Rubi](https://github.com/HectorRubi).
