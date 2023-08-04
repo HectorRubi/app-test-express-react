@@ -7,6 +7,7 @@ import { HiClipboardCheck, HiDatabase } from 'react-icons/hi'
 import { PokemonCard } from '../PokemonModal/index'
 import { usePokemonList } from './../../hooks/usePokemonList'
 import { errorHandler } from './../../middleware/error.handler'
+import { capitalize } from './../../utils/capitalize'
 
 import { SERVER_API_URL, serverEndpoints } from './../../config/env'
 
@@ -64,7 +65,7 @@ export const PokemonList = () => {
                   >
                     <td className="w-32 p-4">{index + 1}</td>
                     <td className="w-2/3 px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                      {pokemon.name}
+                      {capitalize(pokemon.name)}
                     </td>
                     <td className="px-6 py-4 flex gap-4">
                       <Tooltip content="View">
