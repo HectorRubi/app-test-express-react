@@ -21,25 +21,8 @@ export const PokemonList = () => {
     setOpenModal('default')
   }
 
-  const renderTableRows = () => {
-    if (tableLoading) {
-      return <Loader />
-    }
-
-    if (pokemonList.length) {
-      return pokemonList.map((pokemon, key) => {
-        console.log(key)
-        return (
-          <PokeRow
-            key={key}
-            pokemon={pokemon}
-            handleViewButton={handleViewButton}
-          />
-        )
-      })
-    } else {
-      return <EmptyRow />
-    }
+  const calculateRowIndex = (index) => {
+    return index + 1 + (currentPage - 1) * 10
   }
 
   return (
@@ -61,7 +44,7 @@ export const PokemonList = () => {
               pokemonList.map((pokemon, index) => (
                 <PokeRow
                   key={index}
-                  index={index}
+                  index={calculateRowIndex(index)}
                   pokemon={pokemon}
                   handleViewButton={handleViewButton}
                 />
@@ -78,6 +61,8 @@ export const PokemonList = () => {
           currentPage={currentPage}
           onPageChange={(page) => setCurrentPage(page)}
           showIcons
+          nextLabel=""
+          previousLabel=""
           totalPages={totalPokemons}
           layout="pagination"
         />

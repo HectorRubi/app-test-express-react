@@ -29,7 +29,7 @@ export const PokeRow = ({ index, pokemon, handleViewButton }) => {
 
   return (
     <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-      <Table.Cell>{index + 1}</Table.Cell>
+      <Table.Cell>{index}</Table.Cell>
       <Table.Cell className="w-8/12 whitespace-nowrap font-medium text-gray-900 dark:text-white text-center text-base lg:text-xl">
         {capitalize(pokemon.name)}
       </Table.Cell>
