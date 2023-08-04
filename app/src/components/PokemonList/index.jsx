@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import { useState } from 'react'
-import { Button, Tooltip, Table } from 'flowbite-react'
+import { Button, Tooltip, Table, Spinner } from 'flowbite-react'
 import { HiClipboardCheck, HiDatabase } from 'react-icons/hi'
 
 import { PokemonCard } from '../PokemonModal/index'
@@ -12,7 +12,8 @@ import { capitalize } from './../../utils/capitalize'
 import { SERVER_API_URL, serverEndpoints } from './../../config/env'
 
 export const PokemonList = () => {
-  const { pokemonList } = usePokemonList()
+  const { pokemonList, tableLoading } = usePokemonList()
+
   const [openModal, setOpenModal] = useState()
   const [selected, setSelected] = useState()
 
@@ -52,6 +53,14 @@ export const PokemonList = () => {
           </Table.Head>
 
           <Table.Body className="divide-y">
+            {tableLoading && (
+              <Table.Row>
+                <Table.Cell colSpan={3} className="text-center">
+                  <Spinner aria-label="loading"></Spinner>
+                </Table.Cell>
+              </Table.Row>
+            )}
+
             {pokemonList.length
               ? pokemonList.map((pokemon, key) => (
                   <Table.Row
