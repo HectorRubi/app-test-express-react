@@ -34,7 +34,9 @@ export const PokemonCard = ({
             </div>
           </div>
         ) : (
-          <Spinner aria-label="Loading" size="xl" />
+          <div className="flex justify-center items-center my-20">
+            <Spinner aria-label="Loading" size="xl" />
+          </div>
         )}
       </Modal.Body>
       <Modal.Footer>
