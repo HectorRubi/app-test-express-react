@@ -1,9 +1,14 @@
+import axios from 'axios'
+import Swal from 'sweetalert2'
 import { useState } from 'react'
 import { Button, Tooltip } from 'flowbite-react'
 import { HiClipboardCheck, HiDatabase } from 'react-icons/hi'
 
 import { PokemonCard } from './../PokemonCard/index'
 import { usePokemonList } from './../../hooks/usePokemonList'
+import { errorHandler } from './../../middleware/error.handler'
+
+import { SERVER_API_URL, serverEndpoints } from './../../config/env'
 
 export const PokemonList = () => {
   const { pokemonList } = usePokemonList()
@@ -13,6 +18,24 @@ export const PokemonList = () => {
   const handleViewButton = (pokemon) => {
     setSelected(pokemon)
     setOpenModal('default')
+  }
+
+  const saveData = (pokemon) => {
+    const url = `${SERVER_API_URL}${serverEndpoints.pokemon}`
+    axios
+      .post(url, {
+        name: pokemon.name,
+      })
+      .then((response) => {
+        Swal.fire('Saved!', '', 'success')
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          html: errorHandler(error),
+        })
+      })
   }
 
   return (
@@ -51,7 +74,10 @@ export const PokemonList = () => {
                       </Tooltip>
 
                       <Tooltip content="Save in DB">
-                        <Button color="success">
+                        <Button
+                          color="success"
+                          onClick={() => saveData(pokemon)}
+                        >
                           <HiDatabase className="h-6 w-6" />
                         </Button>
                       </Tooltip>
