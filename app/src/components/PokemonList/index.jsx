@@ -61,39 +61,45 @@ export const PokemonList = () => {
               </Table.Row>
             )}
 
-            {pokemonList.length
-              ? pokemonList.map((pokemon, key) => (
-                  <Table.Row
-                    key={key}
-                    className="bg-white dark:border-gray-700 dark:bg-gray-800"
-                  >
-                    <Table.Cell>{key + 1}</Table.Cell>
-                    <Table.Cell className="w-8/12 whitespace-nowrap font-medium text-gray-900 dark:text-white text-center text-base lg:text-xl">
-                      {capitalize(pokemon.name)}
-                    </Table.Cell>
-                    <Table.Cell className="flex gap-4 justify-center">
-                      <Tooltip content="View">
-                        <Button
-                          size="sm"
-                          onClick={() => handleViewButton(pokemon)}
-                        >
-                          <HiClipboardCheck className="h-6 w-6" />
-                        </Button>
-                      </Tooltip>
+            {pokemonList.length ? (
+              pokemonList.map((pokemon, key) => (
+                <Table.Row
+                  key={key}
+                  className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                >
+                  <Table.Cell>{key + 1}</Table.Cell>
+                  <Table.Cell className="w-8/12 whitespace-nowrap font-medium text-gray-900 dark:text-white text-center text-base lg:text-xl">
+                    {capitalize(pokemon.name)}
+                  </Table.Cell>
+                  <Table.Cell className="flex gap-4 justify-center">
+                    <Tooltip content="View">
+                      <Button
+                        size="sm"
+                        onClick={() => handleViewButton(pokemon)}
+                      >
+                        <HiClipboardCheck className="h-6 w-6" />
+                      </Button>
+                    </Tooltip>
 
-                      <Tooltip content="Save in DB">
-                        <Button
-                          size="sm"
-                          color="success"
-                          onClick={() => saveData(pokemon)}
-                        >
-                          <HiDatabase className="h-6 w-6" />
-                        </Button>
-                      </Tooltip>
-                    </Table.Cell>
-                  </Table.Row>
-                ))
-              : null}
+                    <Tooltip content="Save in DB">
+                      <Button
+                        size="sm"
+                        color="success"
+                        onClick={() => saveData(pokemon)}
+                      >
+                        <HiDatabase className="h-6 w-6" />
+                      </Button>
+                    </Tooltip>
+                  </Table.Cell>
+                </Table.Row>
+              ))
+            ) : (
+              <Table.Row>
+                <Table.Cell colSpan={3} className="text-center text-2xl">
+                  Sorry, there's noting here.
+                </Table.Cell>
+              </Table.Row>
+            )}
           </Table.Body>
         </Table>
       </div>
