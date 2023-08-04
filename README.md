@@ -25,7 +25,7 @@ Before you begin, ensure you have the following installed on your system:
 
 2. **Create .env files for the backend and frontend based on the provided examples:**
 
-   - For the backend, create a .env file in the `server` directory and set the necessary database configuration variables:
+   - For the backend, create a .env file in the `server` directory and set the necessary database configuration variables, this configuration only works inside the container:
 
      ```plaintext
      PORT=4024
@@ -42,7 +42,7 @@ Before you begin, ensure you have the following installed on your system:
      REACT_APP_SERVER_HOST='http://localhost:4024'
      ```
 
-3. Build and run the Docker containers using Docker Compose. From the project root directory, run:
+3. **Build and run the Docker containers using Docker Compose. From the project root directory, run:**
 
    ```bash
    make start
@@ -50,7 +50,7 @@ Before you begin, ensure you have the following installed on your system:
 
    This command will start the frontend, backend, and database containers.
 
-4. Access the application in your web browser:
+4. **Access the application in your web browser:\***
 
    Open your browser and navigate to http://localhost:3000 to access the frontend of the application.
 
@@ -58,19 +58,19 @@ Before you begin, ensure you have the following installed on your system:
 
 The Dockerized Full Stack Web Application allows you to explore a list of Pokémon and interact with their details. Here's a step-by-step guide on how to use the application:
 
-1. Accessing the Frontend:
+1. **Accessing the Frontend:**
 
    Open your web browser and navigate to http://localhost:3000 to access the frontend of the application.
 
-2. Viewing the List of Pokémon:
+2. **Viewing the List of Pokémon:**
 
    Upon loading the application, you will be greeted with the home page displaying a list of Pokémon. Each Pokémon shows its name and two buttons, view and save.
 
-3. Viewing Pokémon Details:
+3. **Viewing Pokémon Details:**
 
    Click on view button to open a modal window with detailed information about the selected Pokémon. The modal displays data such as its abilities, height, weight, and any other relevant information. Also, there are a button to save Pokémon data to the database.
 
-4. Saving Pokémon to the Database:
+4. **Saving Pokémon to the Database:**
 
    To save a Pokémon's data to the database, there are two options:
 
@@ -80,6 +80,18 @@ The Dockerized Full Stack Web Application allows you to explore a list of Pokém
       Within the modal, locate the "Save to DB" button and click on it, this will save all data.
 
    The application will send the Pokémon's data to the backend, which will then save it to the connected database.
+
+5. **Review the data stored in the database:**
+
+   If you want to access the information in the database, you will need to have the software installed to connect, such as pgadmin.
+   Once you have it installed, you will have to connect to the container, which initializes a PostgreSQL database with the following access data:
+
+   ```plaintext
+   HOST=localhost
+   PORT=5000
+   USER=admin
+   PASSWORD=admin123
+   ```
 
 ## Project Structure
 
