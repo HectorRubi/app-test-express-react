@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import { useState } from 'react'
-import { Button, Tooltip } from 'flowbite-react'
+import { Button, Tooltip, Table } from 'flowbite-react'
 import { HiClipboardCheck, HiDatabase } from 'react-icons/hi'
 
 import { PokemonCard } from '../PokemonModal/index'
@@ -42,52 +42,51 @@ export const PokemonList = () => {
   return (
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                <span className="sr-only">No</span>
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Name
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody>
+        <Table hoverable>
+          <Table.Head>
+            <Table.HeadCell>
+              <span className="sr-only">No</span>
+            </Table.HeadCell>
+            <Table.HeadCell className="text-center">Name</Table.HeadCell>
+            <Table.HeadCell className="text-center">Action</Table.HeadCell>
+          </Table.Head>
+
+          <Table.Body className="divide-y">
             {pokemonList.length
-              ? pokemonList.map((pokemon, index) => (
-                  <tr
-                    key={index}
-                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+              ? pokemonList.map((pokemon, key) => (
+                  <Table.Row
+                    key={key}
+                    className="bg-white dark:border-gray-700 dark:bg-gray-800"
                   >
-                    <td className="w-32 p-4">{index + 1}</td>
-                    <td className="w-2/3 px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                    <Table.Cell>{key + 1}</Table.Cell>
+                    <Table.Cell className="w-8/12 whitespace-nowrap font-medium text-gray-900 dark:text-white text-center text-base lg:text-xl">
                       {capitalize(pokemon.name)}
-                    </td>
-                    <td className="px-6 py-4 flex gap-4">
+                    </Table.Cell>
+                    <Table.Cell className="flex gap-4 justify-center">
                       <Tooltip content="View">
-                        <Button onClick={() => handleViewButton(pokemon)}>
+                        <Button
+                          size="sm"
+                          onClick={() => handleViewButton(pokemon)}
+                        >
                           <HiClipboardCheck className="h-6 w-6" />
                         </Button>
                       </Tooltip>
 
                       <Tooltip content="Save in DB">
                         <Button
+                          size="sm"
                           color="success"
                           onClick={() => saveData(pokemon)}
                         >
                           <HiDatabase className="h-6 w-6" />
                         </Button>
                       </Tooltip>
-                    </td>
-                  </tr>
+                    </Table.Cell>
+                  </Table.Row>
                 ))
               : null}
-          </tbody>
-        </table>
+          </Table.Body>
+        </Table>
       </div>
       {selected && (
         <PokemonCard
