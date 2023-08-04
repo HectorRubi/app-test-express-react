@@ -5,11 +5,7 @@ export const DefaultFooter = () => {
     <Footer container>
       <div className="w-full text-center">
         <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
-          <Footer.Brand
-            alt="Logo"
-            name="Pokemon"
-            src="https://www.freepnglogos.com/uploads/pokemon-symbol-logo-png-31.png"
-          />
+          <Footer.Brand alt="Icon" name="Pokemon" src="/icon.png" />
           <Footer.LinkGroup>
             <DarkThemeToggle />
           </Footer.LinkGroup>
