@@ -2,7 +2,7 @@ node_modules
 npm-debug.log
 package-lock.json
 .editorconfig
-.eslintrc.js
+.gitignore
 .prettierignore
 .prettierrc.json
 README.md
