@@ -1,7 +1,9 @@
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { useState } from 'react'
 import { Button, Tooltip, Table } from 'flowbite-react'
 import { HiClipboardCheck, HiDatabase } from 'react-icons/hi'
+import { AiOutlineLoading } from 'react-icons/ai'
 
 import { errorHandler } from './../../../middleware/error.handler'
 import { capitalize } from './../../../utils/capitalize'
@@ -9,16 +11,21 @@ import { capitalize } from './../../../utils/capitalize'
 import { SERVER_API_URL, serverEndpoints } from './../../../config/env'
 
 export const PokeRow = ({ index, pokemon, handleViewButton }) => {
+  const [showLoader, setShowLoader] = useState(false)
+
   const saveData = (pokemon) => {
+    setShowLoader(true)
     const url = `${SERVER_API_URL}${serverEndpoints.pokemon}`
     axios
       .post(url, {
         name: pokemon.name,
       })
       .then((response) => {
+        setShowLoader(false)
         Swal.fire('Saved!', '', 'success')
       })
       .catch((error) => {
+        setShowLoader(false)
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -41,7 +48,16 @@ export const PokeRow = ({ index, pokemon, handleViewButton }) => {
         </Tooltip>
 
         <Tooltip content="Save in DB">
-          <Button size="sm" color="success" onClick={() => saveData(pokemon)}>
+          <Button
+            size="sm"
+            color="success"
+            onClick={() => saveData(pokemon)}
+            disabled={showLoader}
+            isProcessing={showLoader}
+            processingSpinner={
+              <AiOutlineLoading className="h-6 w-6 animate-spin" />
+            }
+          >
             <HiDatabase className="h-6 w-6" />
           </Button>
         </Tooltip>

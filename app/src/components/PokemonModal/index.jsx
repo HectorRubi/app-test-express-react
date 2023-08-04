@@ -1,7 +1,9 @@
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { useState } from 'react'
 import { Button, Modal, Spinner, Tooltip } from 'flowbite-react'
 import { HiDatabase } from 'react-icons/hi'
+import { AiOutlineLoading } from 'react-icons/ai'
 
 import { usePokemon } from '../../hooks/usePokemon'
 import { errorHandler } from './../../middleware/error.handler'
@@ -18,6 +20,7 @@ export const PokemonCard = ({
   setOpenModal,
 }) => {
   const { pokemon } = usePokemon(url)
+  const [showLoader, setShowLoader] = useState(false)
 
   const requestBodyMapper = (pokemon) => {
     return {
@@ -38,12 +41,14 @@ export const PokemonCard = ({
   }
 
   const saveData = (pokemon) => {
+    setShowLoader(true)
     const url = `${SERVER_API_URL}${serverEndpoints.pokemon}`
     const body = requestBodyMapper(pokemon)
     axios
       .post(url, body)
       .then((response) => {
         Swal.fire('Saved!', '', 'success')
+        setShowLoader(false)
       })
       .catch((error) => {
         Swal.fire({
@@ -51,6 +56,7 @@ export const PokemonCard = ({
           title: 'Oops...',
           html: errorHandler(error),
         })
+        setShowLoader(false)
       })
   }
 
@@ -82,7 +88,15 @@ export const PokemonCard = ({
       </Modal.Body>
       <Modal.Footer>
         <Tooltip content="Save in DB">
-          <Button color="success" onClick={() => saveData(pokemon)}>
+          <Button
+            color="success"
+            onClick={() => saveData(pokemon)}
+            disabled={showLoader}
+            isProcessing={showLoader}
+            processingSpinner={
+              <AiOutlineLoading className="h-6 w-6 animate-spin" />
+            }
+          >
             <HiDatabase className="h-6 w-6" />
           </Button>
         </Tooltip>

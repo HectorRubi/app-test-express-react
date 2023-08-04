@@ -4,7 +4,7 @@ export const Loader = () => {
   return (
     <Table.Row>
       <Table.Cell colSpan={3} className="text-center">
-        <Spinner aria-label="loading"></Spinner>
+        <Spinner aria-label="loading" size="xl"></Spinner>
       </Table.Cell>
     </Table.Row>
   )
