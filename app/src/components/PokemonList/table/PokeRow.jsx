@@ -1,38 +1,12 @@
-import axios from 'axios'
-import Swal from 'sweetalert2'
-import { useState } from 'react'
 import { Button, Tooltip, Table } from 'flowbite-react'
 import { HiClipboardCheck, HiDatabase } from 'react-icons/hi'
 import { AiOutlineLoading } from 'react-icons/ai'
 
-import { errorHandler } from './../../../middleware/error.handler'
+import { useSavePokemon } from './../../../hooks/useSavePokemon'
 import { capitalize } from './../../../utils/capitalize'
 
-import { SERVER_API_URL, serverEndpoints } from './../../../config/env'
-
 export const PokeRow = ({ index, pokemon, handleViewButton }) => {
-  const [showLoader, setShowLoader] = useState(false)
-
-  const saveData = (pokemon) => {
-    setShowLoader(true)
-    const url = `${SERVER_API_URL}${serverEndpoints.pokemon}`
-    axios
-      .post(url, {
-        name: pokemon.name,
-      })
-      .then((response) => {
-        setShowLoader(false)
-        Swal.fire('Saved!', '', 'success')
-      })
-      .catch((error) => {
-        setShowLoader(false)
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          html: errorHandler(error),
-        })
-      })
-  }
+  const { showLoader, saveData } = useSavePokemon()
 
   return (
     <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
@@ -51,7 +25,7 @@ export const PokeRow = ({ index, pokemon, handleViewButton }) => {
           <Button
             size="sm"
             color="success"
-            onClick={() => saveData(pokemon)}
+            onClick={() => saveData(pokemon, false)}
             disabled={showLoader}
             isProcessing={showLoader}
             processingSpinner={

@@ -1,18 +1,13 @@
-import axios from 'axios'
-import Swal from 'sweetalert2'
-import { useState } from 'react'
 import { Button, Modal, Spinner, Tooltip } from 'flowbite-react'
 import { HiDatabase } from 'react-icons/hi'
 import { AiOutlineLoading } from 'react-icons/ai'
 
-import { usePokemon } from '../../hooks/usePokemon'
-import { errorHandler } from './../../middleware/error.handler'
+import { usePokemon } from './../../hooks/usePokemon'
+import { useSavePokemon } from './../../hooks/useSavePokemon'
 
 import { Sprites } from './body/Sprites'
 import { Abilities } from './body/Abilities'
 import { Detail } from './body/Detail'
-
-import { SERVER_API_URL, serverEndpoints } from './../../config/env'
 
 export const PokemonCard = ({
   pokemon: { name, url },
@@ -20,45 +15,7 @@ export const PokemonCard = ({
   setOpenModal,
 }) => {
   const { pokemon } = usePokemon(url)
-  const [showLoader, setShowLoader] = useState(false)
-
-  const requestBodyMapper = (pokemon) => {
-    return {
-      extId: pokemon.id,
-      name: pokemon.name,
-      baseExperience: pokemon.base_experience,
-      height: pokemon.height,
-      isDefault: pokemon.is_default,
-      order: pokemon.order,
-      weight: pokemon.weight,
-      locationAreaEncounters: pokemon.location_area_encounters,
-      abilities: pokemon.abilities.map((ability) => ({
-        isHidden: ability.is_hidden,
-        slot: ability.slot,
-        ability: ability.ability,
-      })),
-    }
-  }
-
-  const saveData = (pokemon) => {
-    setShowLoader(true)
-    const url = `${SERVER_API_URL}${serverEndpoints.pokemon}`
-    const body = requestBodyMapper(pokemon)
-    axios
-      .post(url, body)
-      .then((response) => {
-        Swal.fire('Saved!', '', 'success')
-        setShowLoader(false)
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          html: errorHandler(error),
-        })
-        setShowLoader(false)
-      })
-  }
+  const { showLoader, saveData } = useSavePokemon()
 
   return (
     <Modal
@@ -90,7 +47,7 @@ export const PokemonCard = ({
         <Tooltip content="Save in DB">
           <Button
             color="success"
-            onClick={() => saveData(pokemon)}
+            onClick={() => saveData(pokemon, true)}
             disabled={showLoader}
             isProcessing={showLoader}
             processingSpinner={
