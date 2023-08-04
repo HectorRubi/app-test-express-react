@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Button, Tooltip } from 'flowbite-react'
 import { HiClipboardCheck, HiDatabase } from 'react-icons/hi'
 
-import { PokemonCard } from './../PokemonCard/index'
+import { PokemonCard } from '../PokemonModal/index'
 import { usePokemonList } from './../../hooks/usePokemonList'
 import { errorHandler } from './../../middleware/error.handler'
 
