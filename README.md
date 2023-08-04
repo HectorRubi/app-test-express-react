@@ -39,7 +39,7 @@ Before you begin, ensure you have the following installed on your system:
    - For the frontend, create a .env file in the `app` directory and set the backend URL:
 
      ```plaintext
-     REACT_APP_SERVER_HOST='http://server:4024'
+     REACT_APP_SERVER_HOST='http://localhost:4024'
      ```
 
 3. Build and run the Docker containers using Docker Compose. From the project root directory, run:
