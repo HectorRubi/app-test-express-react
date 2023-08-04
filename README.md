@@ -1,7 +1,7 @@
 # Pokémon List - Dockerized Full Stack Web Application
 
-[![GitHub tag](https://img.shields.io/github/tag/HectorRubi/HectorRubi?include_prereleases=&sort=semver&color=blue)](https://github.com/HectorRubi/HectorRubi/releases/)
-
+![GitHub Latest Release)](https://img.shields.io/github/v/release/HectorRubi/app-test-express-react?logo=github)
+[![Release date](https://img.shields.io/github/release-date/HectorRubi/app-test-express-react)](https://github.com/HectorRubi/app-test-express-react/releases)
 [![License](https://img.shields.io/badge/License-MIT-blue)](#license)
 
 Welcome to the Pokémon List project! This repository contains the necessary files and configurations to set up a full-stack web application with a frontend, backend, and database, all managed using Docker Compose. The automation of various tasks is achieved through a Makefile.
@@ -50,7 +50,7 @@ Before you begin, ensure you have the following installed on your system:
 
    This command will start the frontend, backend, and database containers.
 
-4. **Access the application in your web browser:\***
+4. **Access the application in your web browser:**
 
    Open your browser and navigate to http://localhost:3000 to access the frontend of the application.
 
