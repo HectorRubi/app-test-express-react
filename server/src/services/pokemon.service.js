@@ -41,6 +41,7 @@ class PokemonService {
     response.pokemon = newPokemon.dataValues;
 
     // Pokemon has abilities
+    response.abilities = [];
     if (abilities && abilities.length > 0) {
       response.abilities = await Promise.all(
         abilities.map(async (ability) => {
