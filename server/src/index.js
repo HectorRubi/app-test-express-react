@@ -1,4 +1,5 @@
 const express = require('express');
+var cors = require('cors');
 const { env } = require('./config/env');
 const { routerApi } = require('./routes');
 
@@ -12,6 +13,7 @@ const app = express();
 const port = env.port;
 
 app.use(express.json());
+app.use(cors());
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
